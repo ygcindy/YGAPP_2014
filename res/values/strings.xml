@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">YGAPP_2013</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_click_and_draw">ClickAndDraw</string>
+    <string name="title_activity_thread">Thread</string>
+    <string name="title_activity_eat_bean">EatBeanActivity</string>
+    <string name="title_activity_client_assistant">ClientAssistant</string>
+    <string name="str_client_assistant_button_connect">测试</string>
+    <string name="str_activity_client_assistant_send">发送</string>
+    <string name="btn_poweroff">关机</string>
+    <string name="lock_screen">锁屏</string>
+    <string name="str_disable_keypadmouse">屏蔽鼠标键盘</string>
+    <string name="str_enable_keypadmouse">激活鼠标键盘</string>
+    <string name="str_disable_keypad">屏蔽键盘</string>
+    <string name="str_enable_keypad">激活键盘</string>
+    <string name="str_disable_mouse">屏蔽鼠标</string>
+    <string name="str_enable_mouse">激活鼠标</string>
+    <string name="str_restartwindow">重启</string>
+    <string name="str_start">开始</string>
+    <string name="str_stop">停止</string>
+    <string name="str_set">设置</string>
+    <string name="title_activity_web_view_demo">WebViewDemo</string>
+    <string name="title_activity_broadcast_demo">BroadcastDemo</string>
+    <string name="title_activity_json_demo">JsonDemo</string>
+    <string name="title_activity_package_manager_demo">PackageManagerDemo</string>
+    <string name="title_activity_spinner_demo">SpinnerDemo</string>
+    <string name="title_activity_image_demo">ImageDemo</string>
+    <string name="title_activity_alert_dialog_demo">AlertDialogDemo</string>
+    <string name="title_activity_storage_demo">StorageDemo</string>
+    <string name="title_activity_notification_manager_demo">NotificationManagerDemo</string>
+    <string name="title_activity_charge_inquire">ChargeInquire</string>
+    <string name="title_activity_jni_demo">JniDemo</string>
+    <string name="title_activity_array_adapter_demo">ArrayAdapterDemo</string>
+    <string name="title_activity_web_catcher">WebCatcher</string>
+
+</resources>

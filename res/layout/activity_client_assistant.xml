@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ClientAssistant" >
+
+    <Button
+        android:id="@+id/client_assistant_button_connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_send"
+        android:layout_below="@+id/editText_send"
+        android:layout_marginTop="24dp"
+        android:text="@string/str_client_assistant_button_connect" />
+
+    <Button
+        android:id="@+id/btn_disable_keypadmouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/client_assistant_button_connect"
+        android:layout_below="@+id/client_assistant_button_connect"
+        android:text="@string/str_disable_keypadmouse" />
+
+    <Button
+        android:id="@+id/btn_disable_keypad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_disable_keypadmouse"
+        android:layout_below="@+id/btn_disable_keypadmouse"
+        android:text="@string/str_disable_keypad" />
+
+    <Button
+        android:id="@+id/btn_enable_keypad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_disable_keypad"
+        android:layout_alignBottom="@+id/btn_disable_keypad"
+        android:layout_toRightOf="@+id/btn_disable_keypad"
+        android:text="@string/str_enable_keypad" />
+
+    <Button
+        android:id="@+id/btn_disable_mouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_disable_keypad"
+        android:layout_below="@+id/btn_disable_keypad"
+        android:text="@string/str_disable_mouse" />
+
+    <Button
+        android:id="@+id/btn_enable_mouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_disable_mouse"
+        android:layout_alignBottom="@+id/btn_disable_mouse"
+        android:layout_toRightOf="@+id/btn_disable_mouse"
+        android:text="@string/str_enable_mouse" />
+
+    <Button
+        android:id="@+id/btn_lockscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_disable_mouse"
+        android:layout_below="@+id/btn_disable_mouse"
+        android:text="@string/lock_screen" />
+
+    <Button
+        android:id="@+id/btn_poweroff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_disable_mouse"
+        android:layout_toRightOf="@+id/btn_lockscreen"
+        android:text="@string/btn_poweroff" />
+
+    <EditText
+        android:id="@+id/editText_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_enable_keypadmouse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/client_assistant_button_connect"
+        android:layout_toRightOf="@id/btn_disable_keypadmouse"
+        android:text="@string/str_enable_keypadmouse" />
+
+    <Button
+        android:id="@+id/client_assistant_button_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText_send"
+        android:layout_toRightOf="@+id/editText_send"
+        android:text="@string/str_activity_client_assistant_send" />
+
+    <Button
+        android:id="@+id/btn_restartwindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btn_poweroff"
+        android:layout_alignBottom="@+id/btn_poweroff"
+        android:layout_toRightOf="@+id/btn_poweroff"
+        android:text="@string/str_restartwindow" />
+
+</RelativeLayout>
