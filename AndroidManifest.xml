@@ -108,7 +108,13 @@
         <activity
             android:name="com.example.ygapp_2013.WebCatcher"
             android:label="@string/title_activity_web_catcher" >
-        </activity>
+        </activity>      
+        <activity android:label="@string/FileDialog" android:name="com.example.ygapp_2013.FileDialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>        
     </application>
 
 </manifest>

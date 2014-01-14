@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -65,6 +66,7 @@ public class WebCatcher extends Activity {
 	final private String m_debug_url = null;//"http://war3.replays.net/";
 	
 	final private int ENUM_WEB_CATCHER_UPDATE_STORAGE_STATUS = 0;
+	final private int PICK_FILE_REQUEST_CODE = 1;
 	
 	private class MyHandler extends Handler{
 		@Override
@@ -127,9 +129,48 @@ public class WebCatcher extends Activity {
 			}
 		}
 		);		
+		
+		findViewById(R.id.btn_web_catcher_url_file).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getBaseContext(), FileDialog.class);
+                intent.putExtra(FileDialog.START_PATH, "/sdcard");
+                
+                //can user select directories or not
+                //intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
+                
+                //alternatively you can set file filter
+                intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "txt" });
+                
+                startActivityForResult(intent, PICK_FILE_REQUEST_CODE);                
+			}
+		}
+		);			
 	}
 	
-
+    protected void onActivityResult(int requestCode, int resultCode,
+            Intent data) {
+		if( resultCode == RESULT_OK ){
+	    	if( requestCode == PICK_FILE_REQUEST_CODE ){
+	    		String sel_path = data.getStringExtra(FileDialog.RESULT_PATH);
+	    		Log.v(app_name,"The select url file path is " + sel_path);
+	    		
+	    		EditText url_edt =(EditText) findViewById(R.id.editText_webcatcher_url);
+	    		url_edt.setText(sel_path);
+	    		String url_str = GetWebUrlFromFile(sel_path);
+	    		if( url_str.isEmpty() ){	    			
+	    			return;
+	    		}
+//	    		if( !url_str.endsWith("\n") )
+//	    			url_str += "\n";
+	    		String[] url_split_list = url_str.split("\\r?\\n");	   
+//	    		int t_length = url_split_list.length;
+   				new GetWebContentAsyncTask(WebCatcher.this).execute(url_split_list);
+	    	}			
+		}  
+    }
+    
 	private void CreateAppFolder()
 	{
 		String storage_state = Environment.getExternalStorageState();		
@@ -228,6 +269,8 @@ public class WebCatcher extends Activity {
 		//url = "http://bbs.replays.net/thread-2577975-1-1.html";
 		if( m_debug_url != null )
 			url = m_debug_url;
+		Log.v(app_name,"start catch " + url);
+		
 		InputStream stream = streampost(url);	// http://p.replays.net/page/20131118/1864479.html#p=1
 		byte[] data = null;
 		
@@ -249,6 +292,9 @@ public class WebCatcher extends Activity {
 			}
 			else if( charset.compareToIgnoreCase("gb2312") == 0 || charset.compareToIgnoreCase("gbk") == 0 ){				
 				encoded_str = new String(data,"GBK");	
+			}
+			else{
+				encoded_str = str;				
 			}
 			return encoded_str;
 		} catch (Exception e) {
@@ -438,21 +484,28 @@ public class WebCatcher extends Activity {
 			pd.show();			
 		}
 			
-		@Override
 		protected Void doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			try {
-				String content = StartCatch(params[0]);
-				if( content != null ){   					
-					getUrlTitle(content);
-					ProduceWorkPath();
-					if( m_debug_only_catch_content ){
-						SaveWebContentToFile(content);
-					}					
-					else{
-						getUrlList(content);
-						getHtmlPicture(m_pic_url_list);
-					}					
+			try {				
+				int i;
+				String str;
+				for( i = 0; i < params.length; ++i ){
+					str = params[i];
+					int leret = str.length();
+					if( (str != null) && (str.isEmpty() == false)  ){
+						String content = StartCatch(params[i]);
+						if( content != null ){   					
+							getUrlTitle(content);
+							ProduceWorkPath();
+							if( m_debug_only_catch_content ){
+								SaveWebContentToFile(content);
+							}					
+							else{
+								getUrlList(content);
+								getHtmlPicture(m_pic_url_list);
+							}					
+						}
+					}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -485,7 +538,9 @@ public class WebCatcher extends Activity {
 			}
 			Vibrator vib = (Vibrator) WebCatcher.this.getSystemService(Service.VIBRATOR_SERVICE);
 			vib.vibrate(1500);
-	    }		
+	    }
+
+
 	}   
 	
 	private void UpdateExternStorageStatus(){
@@ -540,18 +595,20 @@ public class WebCatcher extends Activity {
 			this.m_web_title = m_web_title.substring(0, max_length - 1);
 	}
 	
-	private void GetWebUrlFromFile(String filepath){
+	private String GetWebUrlFromFile(String filepath){
+		String out_str = "";
+		
 		try {
-			FileInputStream in_stream = new FileInputStream(filepath);
-			
-			String out_str = null;
+			FileInputStream in_stream = new FileInputStream(filepath);			
+
 			byte[] buffer = new byte[2048];	
 			int read_numbers = 0;
 			do{
 				read_numbers = in_stream.read(buffer);
 				if( read_numbers > 0 )
-					out_str += new String(buffer);
+					out_str += new String(buffer,0,read_numbers);
 			}while( read_numbers != -1 );
+			in_stream.close();
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -562,6 +619,7 @@ public class WebCatcher extends Activity {
 			e.printStackTrace();
 		}
 		
+		return out_str;
 	}
 }
 
