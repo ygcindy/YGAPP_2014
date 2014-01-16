@@ -491,8 +491,7 @@ public class WebCatcher extends Activity {
 				String str;
 				for( i = 0; i < params.length; ++i ){
 					str = params[i];
-					int leret = str.length();
-					if( (str != null) && (str.isEmpty() == false)  ){
+					if( (str != null) && !str.isEmpty() ){
 						String content = StartCatch(params[i]);
 						if( content != null ){   					
 							getUrlTitle(content);

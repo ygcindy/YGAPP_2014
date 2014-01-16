@@ -63,6 +63,8 @@ public class MainActivity extends Activity {
        	map.put("JniDemo", "com.example.ygapp_2013.JniDemo");      
        	map.put("ArrayAdapterDemo", "com.example.ygapp_2013.ArrayAdapterDemo");     
        	map.put("WebCatcher", "com.example.ygapp_2013.WebCatcher");           	
+       	map.put("Monitor", "com.example.ygapp_2013.Monitor");  
+//        map.put("CameraAssitant", "com.example.ygapp_2013.CameraAssitant");  
        	
     }
 	@Override
