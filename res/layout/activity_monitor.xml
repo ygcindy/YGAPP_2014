@@ -21,9 +21,18 @@
         android:id="@+id/btn_monitor_capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_monitor_send_by_mail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="Capture" />
+
+    <Button
+        android:id="@+id/btn_monitor_send_by_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp"
-        android:text="Capture" />
+        android:layout_marginBottom="28dp"
+        android:text="Mail" />
 
 </RelativeLayout>
